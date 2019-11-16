@@ -10,6 +10,7 @@ Updates
     Code Updates for changing config files
 
 ToDo
+
     Modularize (run as modules)
     Use pytesseract or any other python wrapper for tesseract (faster)
     Add training tool
