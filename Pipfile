@@ -11,3 +11,4 @@ pytest = "*"
 python-dateutil = "*"
 
 [dev-packages]
+pylint = "*"
