@@ -85,8 +85,7 @@ def sharpen_image(input_file, output_file):
     :return: void
         Prettifies image and saves result
     """
-
-    rotate_image(input_file, output_file)  # rotate
+    
     cmd = "convert -auto-level -sharpen 0x4.0 -contrast "
     cmd += "'" + output_file + "' '" + output_file + "'"
     print("Running", cmd)
@@ -129,7 +128,9 @@ def main():
             image + ".out.txt"
         )
 
-        sharpen_image(input_path, tmp_path)
+        rotate_image(input_path, tmp_path)  # rotate
+        sharpen_image(input_path, tmp_path)   # sharpen images
+        
         run_tesseract(tmp_path, out_path)
 
     print("Removing tmp folder")
