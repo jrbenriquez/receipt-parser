@@ -1,14 +1,20 @@
 # A fuzzy receipt parser written in Python  
 
+This is a fork of: https://github.com/mre/receipt-parser
 [![Build Status](https://travis-ci.org/mre/receipt-parser.svg?branch=master)](https://travis-ci.org/mre/receipt-parser)  
   
-Updating your housekeeping book is a tedious task: You need to manually find the shop name, the date and the total from every receipt. Then you need to write it down. At the end you want to calculate a sum of all bills. Nasty. So why not let a machine do it?
+Updates
 
-This is a fuzzy receipt parser written in Python. You give it any dirty old receipt lying around and it will try its best to find the correct data for you.
+    Added conversion to black and white for better Text Recognition
+    Added deskew for better Text Recognition
+    Code Updates for changing config files
 
-It started as a hackathon project. Read more about it on the [trivago techblog](http://tech.trivago.com/2015/10/06/python_receipt_parser/).
-Also read the comments on [HackerNews](https://news.ycombinator.com/item?id=10338199)
-Oh hey! And there's also a [talk online](https://www.youtube.com/watch?v=TuDeUsIlJz4) now if you're the visual kind of person.
+ToDo
+    Modularize (run as modules)
+    Use pytesseract or any other python wrapper for tesseract (faster)
+    Add training tool
+    Easy way of changing config file
+    Iterate through the different date formats instead of hardcoding
 
 ## Dependencies
 

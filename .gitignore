@@ -7,7 +7,7 @@ txt/*
 .idea
 *.pyc
 stats.csv
-
+.vscode/*
 # Test files
 !img/IMG000*.jpg
 !txt/IMG000*.txt
