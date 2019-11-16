@@ -11,6 +11,7 @@ Updates
 
 ToDo
 
+    Move away from imagemagic to OpenCV - faster
     Modularize (run as modules)
     Use pytesseract or any other python wrapper for tesseract (faster)
     Add training tool
