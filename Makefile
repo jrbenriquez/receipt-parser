@@ -8,7 +8,7 @@ parse:
 
 .PHONY: import
 import:
-	pipenv run python parser/importer.py
+	pipenv run python -m parser.ocr rotate-90
 
 .PHONY: run
 run: import parse

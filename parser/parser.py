@@ -29,18 +29,20 @@ BASE_PATH = os.getcwd()
 STATS_OUTPUT_FORMAT = "{0:10.0f},{1:d},{2:d},{3:d},{4:d},\n"
 VERBOSE_OUTPUT_FORMAT = "Text, Market, Date, Sum"
 
-
-def read_config(config="config.yml"):
+# TODO use generators for parsing config file in cases where configuration file gets too big
+# TODO maybe separate config file and training data?
+def read_config(config="ph_config.yml"):
     """
     :param file: str
         Name of file to read
     :return: ObjectView
         Parsed config file
     """
+    print(f'Config file is {config}')
     with open(config, 'r') as stream:
         try:
             docs = yaml.safe_load(stream)
-            return ObjectView(docs)
+            return docs
         except yaml.YAMLError as e:
             print(e)
 

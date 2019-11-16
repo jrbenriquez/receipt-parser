@@ -26,3 +26,9 @@ class ObjectView(object):
         """
 
         self.__dict__ = d
+
+    def get(self, key, default_value=None):
+        if hasattr(self.__dict__, key):
+            return self.__dict__[key]
+        else:
+            return default_value

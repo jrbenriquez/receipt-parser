@@ -85,15 +85,25 @@ class Receipt(object):
         :return: date
             Parses data
         """
-
+        date_str = None
         for line in self.lines:
-            m = re.match(self.config.date_format, line)
+            m = re.search(self.config['date_format1'], line) # Base Regex that almost catches all date
             if m:  # We"re happy with the first match for now
                 # validate date using the dateutil library (https://dateutil.readthedocs.io/)
                 date_str = m.group(1)
-                dateutil.parser.parse(date_str)
-
-                return date_str
+            else:
+                #TODO loop through the available regex for date for matches
+                m = re.search(self.config['date_format2'], line) # Let's use a backup regex just to be sure we are not missing anything
+                # validate date using the dateutil library (https://dateutil.readthedocs.io/)
+                if m:
+                    date_str = m.group(1)
+            if date_str and hasattr(m,'groups') and '' not in m.groups(): # Make sure no groups is null since this is a date
+                try:
+                    dateutil.parser.parse(date_str)
+                    return date_str
+                except Exception as e:
+                    # Not Valid string proceed with next
+                    str(e).replace(',', '')
 
     def parse_market(self):
         """
@@ -104,7 +114,7 @@ class Receipt(object):
         for int_accuracy in range(10, 6, -1):
             accuracy = int_accuracy / 10.0
 
-            for market, spellings in self.config.markets.items():
+            for market, spellings in self.config['markets'].items():
                 for spelling in spellings:
                     line = self.fuzzy_find(spelling, accuracy)
                     if line:
@@ -117,13 +127,15 @@ class Receipt(object):
             Parses sum data
         """
 
-        for sum_key in self.config.sum_keys:
+        for sum_key in self.config['sum_keys']:
             sum_line = self.fuzzy_find(sum_key)
             if sum_line:
                 # Replace all commas with a dot to make
                 # finding and parsing the sum easier
                 sum_line = sum_line.replace(",", ".")
                 # Parse the sum
-                sum_float = re.search(self.config.sum_format, sum_line)
-                if sum_float:
-                    return sum_float.group(0)
+                sum_amount = re.search(self.config['sum_format'], sum_line)
+                if sum_amount:
+                    total_detected = sum_amount.group(0).replace(' ', '')
+                    cleaned_total = re.sub('[^a-zA-Z0-9 \n\.]', '.', total_detected)
+                    return cleaned_total

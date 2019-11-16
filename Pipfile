@@ -9,6 +9,7 @@ pyyaml = "*"
 "send2trash" = "*"
 pytest = "*"
 python-dateutil = "*"
+opencv-python = "*"
 
 [dev-packages]
 pylint = "*"

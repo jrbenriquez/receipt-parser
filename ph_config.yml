@@ -1,0 +1,42 @@
+---
+# Set Tesseract config language
+language: "eng"
+
+# Where the raw images are store
+images_path: "data/ram"
+
+# Where the receipts are stored
+# Receipts should be simple text files
+receipts_path: "data/txt_ph"
+
+# Market names roughly ordered by likelyhood.
+# Can contain market locations for fuzzy parsing
+markets:
+   7-Eleven:
+     - Seven Eleven
+     - 7 Eleven
+     - 7-Eleven
+     - 7-ELEWER
+     - Seven Corporation
+     - Philippine Seven Corporation
+   Ministop:
+     - Ministop
+     - MINISTOP
+     - INISTOP
+     - NISTOP
+     - Mini-Stop
+     - Mini Stop
+     - Mini Stop
+# Sum keys roughly ordered by likelyhood.
+sum_keys:
+  - sum
+  - total due
+  - amount due
+  - sum
+  - subtotal
+
+sum_format: '\d+(\.\s?|,\s?|[^a-zA-Z\d])\d{2}'
+
+# Matches dates like 19.08.15 and 19. 08. 2015
+date_format1: '[dDate:]*(([0-9]{0,2}|[A-Za-z]{3})[\.\,\/-]([0-9]{0,2}|[A-Za-z]{3})[\.\,\/-]([0-9]{0,4}))'
+date_format2: '[dDate:]*(([0-9]{0,2}|[A-Za-z]{3})\s([0-9]{0,2}|[A-Za-z]{3})\,?\s([0-9]{0,4}))'
